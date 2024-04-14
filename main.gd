@@ -12,7 +12,7 @@ func _ready():
 
 func _process(delta):
 	%Camera.position = %Player.position
-	%Camera.position.y = %Camera.position.y / 3 + 20
+	%Camera.position.y = %Camera.position.y + 20
 	%Camera.position.z += 10
 
 	#var d = demon_scene.instantiate()
