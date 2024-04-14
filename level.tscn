@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cqj5eteukgr32"]
+[gd_scene load_steps=7 format=3 uid="uid://chhwbwkfcixig"]
 
 [ext_resource type="PackedScene" uid="uid://dxcvdknkt2noy" path="res://block.tscn" id="1_wmnq1"]
 [ext_resource type="PackedScene" uid="uid://ccep30chjdac6" path="res://spawn.tscn" id="2_gh8c7"]
@@ -24,8 +24,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -193.683, 2.39869, 0)
 mesh = SubResource("CapsuleMesh_gamej")
 skin = SubResource("Skin_ytg5e")
 
-[node name="building9" parent="." instance=ExtResource("1_wmnq1")]
-transform = Transform3D(10, 0, 0, 0, 64.4985, 0, 0, 0, 537.032, 249.148, 30.9289, -1.48621)
+[node name="Wall5" parent="." instance=ExtResource("1_wmnq1")]
+transform = Transform3D(10, 0, 0, 0, 64.4985, 0, 0, 0, 495.912, 249.148, 30.9289, -7.26199)
 
 [node name="Ground2" parent="." instance=ExtResource("1_wmnq1")]
 transform = Transform3D(158.684, 0, 0, 0, 10, 0, 0, 0, 500, 201.984, -5, 0)
@@ -35,6 +35,7 @@ physics_material_override = SubResource("PhysicsMaterial_brqvo")
 transform = Transform3D(-4.37114e-07, 0, 541.878, 0, 119.598, 0, -10, 0, -2.36862e-05, -190.098, 30.9289, -251.404)
 
 [node name="Pillars" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.602317, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="Pillar" parent="Pillars" instance=ExtResource("1_wmnq1")]
 transform = Transform3D(10, 0, 0, 0, 64.4985, 0, 0, 0, 10, 1, 30, -200)
@@ -97,8 +98,207 @@ transform = Transform3D(-4.37114e-07, 0, 103.018, 0, 85.3414, 0, -10, 0, -4.5030
 [node name="Wall2" parent="." instance=ExtResource("1_wmnq1")]
 transform = Transform3D(-4.37114e-07, 0, 178.725, 0, 119.598, 0, -10, 0, -7.81231e-06, 209.862, 30.9289, -251.404)
 
-[node name="Ramp" parent="." instance=ExtResource("1_wmnq1")]
-transform = Transform3D(-2.50723e-07, 0, 143.092, 4.64225, 41.4788, 5.06219e-06, -3.36895, 57.1557, -3.67372e-06, 2.61573, 14.6172, 272.183)
-
 [node name="NPC" parent="." instance=ExtResource("4_my6du")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 70.6597, 0, -168.136)
+
+[node name="Wall3" parent="." instance=ExtResource("1_wmnq1")]
+transform = Transform3D(-4.37114e-07, 0, 178.725, 0, 119.598, 0, -10, 0, -7.81231e-06, 212.862, 30.9289, 241.844)
+
+[node name="Wall4" parent="." instance=ExtResource("1_wmnq1")]
+transform = Transform3D(-4.37114e-07, 0, 178.725, 0, 119.598, 0, -10, 0, -7.81231e-06, -85.8113, 30.9289, 261.002)
+visible = false
+
+[node name="Rampup" type="MeshInstance3D" parent="."]
+
+[node name="Ramp" parent="Rampup" instance=ExtResource("1_wmnq1")]
+transform = Transform3D(-3.00715e-07, 0, 67.8856, 5.56787, 30.0825, 2.4016e-06, -4.04069, 41.4522, -1.74288e-06, 37.8786, 10.3168, 269.68)
+
+[node name="Ground3" parent="Rampup" instance=ExtResource("1_wmnq1")]
+transform = Transform3D(68.3286, 0, 0, 0, 7.85466, 0, 0, 0, 204.923, 38.0757, 24.1505, 390.749)
+physics_material_override = SubResource("PhysicsMaterial_brqvo")
+
+[node name="Wall5" parent="Rampup" instance=ExtResource("1_wmnq1")]
+transform = Transform3D(-10, 0, 1.31408e-05, 0, 55.9342, 0, -8.74228e-07, 0, -150.313, 75.0753, 0.0388355, 363.529)
+
+[node name="Wall6" parent="Rampup" instance=ExtResource("1_wmnq1")]
+transform = Transform3D(-10, -3.95603e-06, -2.96881e-06, -2.70703e-07, 45.2735, -33.9282, 8.3126e-07, -32.8473, -46.7633, 75.0753, -11.5726, 281.3)
+
+[node name="Wall7" parent="Rampup" instance=ExtResource("1_wmnq1")]
+transform = Transform3D(-10, -3.95603e-06, -2.96881e-06, -2.70703e-07, 45.2735, -33.9282, 8.3126e-07, -32.8473, -46.7633, -0.613956, -11.5726, 281.3)
+
+[node name="Wall8" parent="Rampup" instance=ExtResource("1_wmnq1")]
+transform = Transform3D(-10, 0, 1.31408e-05, 0, 55.9342, 0, -8.74228e-07, 0, -150.313, -0.614, 0.039, 363.529)
+
+[node name="Rampup2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -277.699)
+
+[node name="Ramp" parent="Rampup2" instance=ExtResource("1_wmnq1")]
+transform = Transform3D(2.0477, -19.3054, 0, 2.81842, 14.0262, 0, 0, 0, 14.6584, 144.823, 4.30539, 80.6244)
+
+[node name="Ground3" parent="Rampup2" instance=ExtResource("1_wmnq1")]
+transform = Transform3D(-6.38241e-07, 0, 51.2335, 0, 3.484, 0, -14.6012, 0, -2.23949e-06, 110.599, 10.9721, 80.6663)
+physics_material_override = SubResource("PhysicsMaterial_brqvo")
+
+[node name="Ramp2" parent="Rampup2" instance=ExtResource("1_wmnq1")]
+transform = Transform3D(2.0477, 19.3054, 0, -2.81842, 14.0262, 0, 0, 0, 14.6584, 76.3823, 4.30539, 80.6244)
+
+[node name="Rampup3" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -78.6674)
+
+[node name="Ramp" parent="Rampup3" instance=ExtResource("1_wmnq1")]
+transform = Transform3D(2.0477, -19.3054, 0, 2.81842, 14.0262, 0, 0, 0, 14.6584, 144.823, 4.30539, 80.6244)
+
+[node name="Ground3" parent="Rampup3" instance=ExtResource("1_wmnq1")]
+transform = Transform3D(-6.38241e-07, 0, 51.2335, 0, 3.484, 0, -14.6012, 0, -2.23949e-06, 110.599, 10.9721, 80.6663)
+physics_material_override = SubResource("PhysicsMaterial_brqvo")
+
+[node name="Ramp2" parent="Rampup3" instance=ExtResource("1_wmnq1")]
+transform = Transform3D(2.0477, 19.3054, 0, -2.81842, 14.0262, 0, 0, 0, 14.6584, 76.3823, 4.30539, 80.6244)
+
+[node name="Rampup4" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 76.8377)
+
+[node name="Ramp" parent="Rampup4" instance=ExtResource("1_wmnq1")]
+transform = Transform3D(2.0477, -19.3054, 0, 2.81842, 14.0262, 0, 0, 0, 14.6584, 144.823, 4.30539, 80.6244)
+
+[node name="Ground3" parent="Rampup4" instance=ExtResource("1_wmnq1")]
+transform = Transform3D(-6.38241e-07, 0, 51.2335, 0, 3.484, 0, -14.6012, 0, -2.23949e-06, 110.599, 10.9721, 80.6663)
+physics_material_override = SubResource("PhysicsMaterial_brqvo")
+
+[node name="Ramp2" parent="Rampup4" instance=ExtResource("1_wmnq1")]
+transform = Transform3D(2.0477, 19.3054, 0, -2.81842, 14.0262, 0, 0, 0, 14.6584, 76.3823, 4.30539, 80.6244)
+
+[node name="gridpath" type="MeshInstance3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 275.783, 27.9956, 363.896)
+
+[node name="Ground2" parent="gridpath" instance=ExtResource("1_wmnq1")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 315, -5, 0)
+physics_material_override = SubResource("PhysicsMaterial_brqvo")
+
+[node name="Ground3" parent="gridpath" instance=ExtResource("1_wmnq1")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 295, -5, 0)
+physics_material_override = SubResource("PhysicsMaterial_brqvo")
+
+[node name="Ground4" parent="gridpath" instance=ExtResource("1_wmnq1")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 286.289, -5, 0)
+physics_material_override = SubResource("PhysicsMaterial_brqvo")
+
+[node name="Ground5" parent="gridpath" instance=ExtResource("1_wmnq1")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 295, -5, 10)
+physics_material_override = SubResource("PhysicsMaterial_brqvo")
+
+[node name="Ground6" parent="gridpath" instance=ExtResource("1_wmnq1")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 305, -5, 10)
+physics_material_override = SubResource("PhysicsMaterial_brqvo")
+
+[node name="Ground7" parent="gridpath" instance=ExtResource("1_wmnq1")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 315, -5, 10)
+physics_material_override = SubResource("PhysicsMaterial_brqvo")
+
+[node name="Ground8" parent="gridpath" instance=ExtResource("1_wmnq1")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 315, -5, -10)
+physics_material_override = SubResource("PhysicsMaterial_brqvo")
+
+[node name="Ground9" parent="gridpath" instance=ExtResource("1_wmnq1")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 325, -5, -10)
+physics_material_override = SubResource("PhysicsMaterial_brqvo")
+
+[node name="Ground10" parent="gridpath" instance=ExtResource("1_wmnq1")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 335, -5, -10)
+physics_material_override = SubResource("PhysicsMaterial_brqvo")
+
+[node name="Ground11" parent="gridpath" instance=ExtResource("1_wmnq1")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 335, -5, -20)
+physics_material_override = SubResource("PhysicsMaterial_brqvo")
+
+[node name="Ground12" parent="gridpath" instance=ExtResource("1_wmnq1")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 345, -5, -20)
+physics_material_override = SubResource("PhysicsMaterial_brqvo")
+
+[node name="Ground13" parent="gridpath" instance=ExtResource("1_wmnq1")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 355, -5, -20)
+physics_material_override = SubResource("PhysicsMaterial_brqvo")
+
+[node name="Ground14" parent="gridpath" instance=ExtResource("1_wmnq1")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 355, -5, -10)
+physics_material_override = SubResource("PhysicsMaterial_brqvo")
+
+[node name="Ground15" parent="gridpath" instance=ExtResource("1_wmnq1")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 355, -5, 0)
+physics_material_override = SubResource("PhysicsMaterial_brqvo")
+
+[node name="Ground16" parent="gridpath" instance=ExtResource("1_wmnq1")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 355, -5, 10)
+physics_material_override = SubResource("PhysicsMaterial_brqvo")
+
+[node name="Ground17" parent="gridpath" instance=ExtResource("1_wmnq1")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 345, -5, 10)
+physics_material_override = SubResource("PhysicsMaterial_brqvo")
+
+[node name="Ground18" parent="gridpath" instance=ExtResource("1_wmnq1")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 345, -5, 20)
+physics_material_override = SubResource("PhysicsMaterial_brqvo")
+
+[node name="Ground19" parent="gridpath" instance=ExtResource("1_wmnq1")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 335, -5, 20)
+physics_material_override = SubResource("PhysicsMaterial_brqvo")
+
+[node name="Ground20" parent="gridpath" instance=ExtResource("1_wmnq1")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 335, -5, 30)
+physics_material_override = SubResource("PhysicsMaterial_brqvo")
+
+[node name="Ground21" parent="gridpath" instance=ExtResource("1_wmnq1")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 335, -5, 40)
+physics_material_override = SubResource("PhysicsMaterial_brqvo")
+
+[node name="Ground22" parent="gridpath" instance=ExtResource("1_wmnq1")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 335, -5, 50)
+physics_material_override = SubResource("PhysicsMaterial_brqvo")
+
+[node name="Ground23" parent="gridpath" instance=ExtResource("1_wmnq1")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 345, -5, 50)
+physics_material_override = SubResource("PhysicsMaterial_brqvo")
+
+[node name="Ground24" parent="gridpath" instance=ExtResource("1_wmnq1")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 355, -5, 50)
+physics_material_override = SubResource("PhysicsMaterial_brqvo")
+
+[node name="Ground25" parent="gridpath" instance=ExtResource("1_wmnq1")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 365, -5, 50)
+physics_material_override = SubResource("PhysicsMaterial_brqvo")
+
+[node name="Ground26" parent="gridpath" instance=ExtResource("1_wmnq1")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 375, -5, 50)
+physics_material_override = SubResource("PhysicsMaterial_brqvo")
+
+[node name="Ground27" parent="gridpath" instance=ExtResource("1_wmnq1")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 375, -5, 60)
+physics_material_override = SubResource("PhysicsMaterial_brqvo")
+
+[node name="Ground28" parent="gridpath" instance=ExtResource("1_wmnq1")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 375, -5, 70)
+physics_material_override = SubResource("PhysicsMaterial_brqvo")
+
+[node name="Ground29" parent="gridpath" instance=ExtResource("1_wmnq1")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 375, -5, 80)
+physics_material_override = SubResource("PhysicsMaterial_brqvo")
+
+[node name="Ground30" parent="gridpath" instance=ExtResource("1_wmnq1")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 375, -5, 90)
+physics_material_override = SubResource("PhysicsMaterial_brqvo")
+
+[node name="Ground3" parent="." instance=ExtResource("1_wmnq1")]
+transform = Transform3D(68.329, 0, 0, 0, 7.855, 0, 0, 0, 530, -107.555, 24.1505, 5.30865)
+physics_material_override = SubResource("PhysicsMaterial_brqvo")
+
+[node name="Wall6" parent="." instance=ExtResource("1_wmnq1")]
+transform = Transform3D(10, 0, 0, 0, 95.6784, 0, 0, 0, 536.459, -78.098, -24.0711, 2.59599)
+
+[node name="Wall7" parent="." instance=ExtResource("1_wmnq1")]
+transform = Transform3D(10, 0, 0, 0, 60.2774, 0, 0, 0, 536.459, -145.098, 40.9289, 2.59599)
+
+[node name="Wall8" parent="." instance=ExtResource("1_wmnq1")]
+transform = Transform3D(-4.37114e-07, 0, 178.725, 0, 119.598, 0, -10, 0, -7.81231e-06, 83.862, 30.9289, 439.844)
+
+[node name="Wall9" parent="." instance=ExtResource("1_wmnq1")]
+transform = Transform3D(10, 0, 0, 0, 119.598, 0, 0, 0, 196.598, 128.862, 30.9289, 338.844)
