@@ -1,0 +1,129 @@
+[gd_scene load_steps=16 format=3 uid="uid://ccep30chjdac6"]
+
+[ext_resource type="Script" path="res://spawn.gd" id="1_1d5l5"]
+[ext_resource type="Texture2D" uid="uid://b3gghspasuukm" path="res://door.png" id="2_jpaha"]
+[ext_resource type="PackedScene" uid="uid://dxcvdknkt2noy" path="res://block.tscn" id="3_717wy"]
+
+[sub_resource type="TorusMesh" id="TorusMesh_5uafj"]
+inner_radius = 0.864
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fx3vb"]
+transparency = 1
+albedo_texture = ExtResource("2_jpaha")
+
+[sub_resource type="QuadMesh" id="QuadMesh_j0xld"]
+material = SubResource("StandardMaterial3D_fx3vb")
+orientation = 1
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_6hq2y"]
+radius = 2.62057
+height = 19.5424
+
+[sub_resource type="Curve" id="Curve_bcty3"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.210145, 1), 0.0, 0.0, 0, 0, Vector2(0.782609, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_vqn5e"]
+curve = SubResource("Curve_bcty3")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_b0ixq"]
+emission_shape = 6
+emission_ring_axis = Vector3(0, 1, 0)
+emission_ring_height = 1.0
+emission_ring_radius = 3.5
+emission_ring_inner_radius = 3.0
+direction = Vector3(0, 2, 0)
+spread = 0.0
+initial_velocity_min = 2.0
+initial_velocity_max = 4.0
+gravity = Vector3(0, 0, 0)
+radial_accel_min = -1.0
+radial_accel_max = -1.0
+tangential_accel_min = 3.0
+tangential_accel_max = 3.0
+scale_curve = SubResource("CurveTexture_vqn5e")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_thfbl"]
+transparency = 1
+blend_mode = 1
+shading_mode = 0
+albedo_color = Color(1, 0.32549, 0, 1)
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_aj038"]
+material = SubResource("StandardMaterial3D_thfbl")
+size = Vector2(0.3, 0.3)
+
+[sub_resource type="Curve" id="Curve_kl4fr"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.210145, 1), 0.0, 0.0, 0, 0, Vector2(0.782609, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_aymiq"]
+curve = SubResource("Curve_kl4fr")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_qmeje"]
+emission_shape = 6
+emission_ring_axis = Vector3(0, 1, 0)
+emission_ring_height = 1.0
+emission_ring_radius = 1.0
+emission_ring_inner_radius = 1.0
+direction = Vector3(0, 2, 0)
+spread = 0.0
+initial_velocity_min = 10.0
+initial_velocity_max = 10.0
+gravity = Vector3(0, 0, 0)
+tangential_accel_min = 5.0
+tangential_accel_max = 5.0
+scale_curve = SubResource("CurveTexture_aymiq")
+
+[node name="Spawn" type="Node3D"]
+script = ExtResource("1_1d5l5")
+
+[node name="Tube" type="MeshInstance3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1.384, 0, 0, 0, 1, 0, 0, 0, 1.384, 0, 0, 0)
+mesh = SubResource("TorusMesh_5uafj")
+
+[node name="Pent" type="MeshInstance3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(12.3259, 0, 0, 0, 1, 0, 0, 0, 12.3259, 0, 0.671953, 8.36652)
+mesh = SubResource("QuadMesh_j0xld")
+
+[node name="building" parent="Pent" instance=ExtResource("3_717wy")]
+unique_name_in_owner = true
+transform = Transform3D(1.05891, 0, 0, 0, 10, 0, 0, 0, 1.05891, 0.00905781, -5.40699, 0.00792629)
+
+[node name="Area3D" type="Area3D" parent="."]
+unique_name_in_owner = true
+collision_layer = 0
+collision_mask = 4
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.758435, 8.04065)
+shape = SubResource("CapsuleShape3D_6hq2y")
+
+[node name="PentFire" type="GPUParticles3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0253043, 1.72716, 7.83691)
+amount = 200
+lifetime = 2.0
+process_material = SubResource("ParticleProcessMaterial_b0ixq")
+draw_pass_1 = SubResource("QuadMesh_aj038")
+
+[node name="SpawnFire" type="GPUParticles3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0253043, 0.973754, 0.0860572)
+emitting = false
+amount = 200
+lifetime = 2.0
+randomness = 1.0
+visibility_aabb = AABB(-4, -2.10226, -4, 8, 4.20451, 8)
+process_material = SubResource("ParticleProcessMaterial_qmeje")
+draw_pass_1 = SubResource("QuadMesh_aj038")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

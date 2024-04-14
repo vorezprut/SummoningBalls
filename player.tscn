@@ -1,0 +1,57 @@
+[gd_scene load_steps=8 format=3 uid="uid://duujwcst2ca2q"]
+
+[ext_resource type="Script" path="res://player.gd" id="1_nrxkj"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_6jo5r"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s5e6f"]
+diffuse_mode = 3
+albedo_color = Color(1, 0.0784314, 0, 1)
+emission = Color(1, 0, 0, 1)
+emission_energy_multiplier = 0.47
+
+[sub_resource type="SphereMesh" id="SphereMesh_f015x"]
+material = SubResource("StandardMaterial3D_s5e6f")
+radius = 2.0
+height = 4.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6t1an"]
+albedo_color = Color(1, 0.0784314, 0, 1)
+emission = Color(1, 0, 0, 1)
+emission_energy_multiplier = 0.47
+
+[sub_resource type="PrismMesh" id="PrismMesh_0ttp2"]
+material = SubResource("StandardMaterial3D_6t1an")
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_ov8q3"]
+radius = 2.0
+
+[node name="Player" type="RigidBody3D" groups=["player"]]
+collision_layer = 4
+collision_mask = 15
+mass = 3.0
+physics_material_override = SubResource("PhysicsMaterial_6jo5r")
+angular_damp = 1.0
+script = ExtResource("1_nrxkj")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_f015x")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MeshInstance3D"]
+transform = Transform3D(0.872462, 0.488682, 0, -0.488682, 0.872462, 0, 0, 0, 0.167563, 1.325, 1.96277, 0.0701532)
+mesh = SubResource("PrismMesh_0ttp2")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="MeshInstance3D"]
+transform = Transform3D(-0.872462, -0.488682, 1.46488e-08, -0.488682, 0.872462, 0, -7.6273e-08, -4.27219e-08, -0.167563, -1.34987, 1.96277, 0.0701532)
+mesh = SubResource("PrismMesh_0ttp2")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_ov8q3")
+
+[node name="Anchor" type="Node3D" parent="."]
+unique_name_in_owner = true
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+light_color = Color(1, 0.160784, 0, 1)
+light_energy = 3.0
+omni_range = 12.936

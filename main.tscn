@@ -1,0 +1,186 @@
+[gd_scene load_steps=19 format=3 uid="uid://bo184rv3wlooe"]
+
+[ext_resource type="PackedScene" uid="uid://duujwcst2ca2q" path="res://player.tscn" id="1_lyw3e"]
+[ext_resource type="Script" path="res://main.gd" id="1_x6rd7"]
+[ext_resource type="PackedScene" uid="uid://cne1e3tesf6ls" path="res://demon.tscn" id="2_ao4d7"]
+[ext_resource type="PackedScene" uid="uid://dxcvdknkt2noy" path="res://block.tscn" id="3_w16xs"]
+[ext_resource type="PackedScene" uid="uid://ccep30chjdac6" path="res://spawn.tscn" id="4_62msg"]
+[ext_resource type="Shader" path="res://main.gdshader" id="5_dyjnw"]
+[ext_resource type="PackedScene" uid="uid://ckxehb6c5xtaw" path="res://human.tscn" id="5_vt15w"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_olwi7"]
+albedo_color = Color(0.0823529, 0.0431373, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_f6p37"]
+material = SubResource("StandardMaterial3D_olwi7")
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_j1mef"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_ppag0"]
+viewport_path = NodePath("blood_vp")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n1ith"]
+resource_local_to_scene = true
+transparency = 1
+albedo_texture = SubResource("ViewportTexture_ppag0")
+metallic = 0.8
+
+[sub_resource type="QuadMesh" id="QuadMesh_6q5hr"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_n1ith")
+size = Vector2(100, 100)
+orientation = 1
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_73iq2"]
+
+[sub_resource type="Sky" id="Sky_c1ph8"]
+sky_material = SubResource("ProceduralSkyMaterial_73iq2")
+
+[sub_resource type="Environment" id="Environment_lshbg"]
+sky = SubResource("Sky_c1ph8")
+ambient_light_source = 3
+ambient_light_sky_contribution = 0.3
+ambient_light_energy = 0.1
+fog_density = 0.001
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_wxt5t"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_t2yig"]
+shader = ExtResource("5_dyjnw")
+
+[node name="main" type="Node3D"]
+script = ExtResource("1_x6rd7")
+blood_color = Color(0.741176, 0, 0, 0.831373)
+
+[node name="Demon" parent="." instance=ExtResource("2_ao4d7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.09976, 0)
+
+[node name="Ground" type="StaticBody3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground"]
+transform = Transform3D(192.117, 0, 0, 0, 1, 0, 0, 0, 191.126, 0, -0.51, 0)
+mesh = SubResource("BoxMesh_f6p37")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground"]
+shape = SubResource("WorldBoundaryShape3D_j1mef")
+
+[node name="bloodplane" type="MeshInstance3D" parent="Ground"]
+unique_name_in_owner = true
+mesh = SubResource("QuadMesh_6q5hr")
+
+[node name="building" parent="." instance=ExtResource("3_w16xs")]
+transform = Transform3D(10, 0, 0, 0, 23.8674, 0, 0, 0, 10, 19.8131, 11.591, 14.0598)
+
+[node name="building2" parent="." instance=ExtResource("3_w16xs")]
+transform = Transform3D(45.7499, 0, 0, 0, 2.85111, 0, 0, 0, 10, 34.4428, 9.1279, -34.7345)
+
+[node name="building4" parent="." instance=ExtResource("3_w16xs")]
+transform = Transform3D(-1.99979e-06, 0, 10, 0, 2.85111, 0, -45.7499, 0, -4.37114e-07, 52.116, 9.1279, -62.069)
+
+[node name="building3" parent="." instance=ExtResource("3_w16xs")]
+transform = Transform3D(39.3995, -1.44915, 0, 23.2535, 2.45536, 0, 0, 0, 10, -7.42282, -2.24079, -34.7345)
+
+[node name="Player" parent="." instance=ExtResource("1_lyw3e")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 3, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_lshbg")
+camera_attributes = SubResource("CameraAttributesPractical_wxt5t")
+
+[node name="Camera" type="Camera3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 0.374218, 0.927341, 0, -0.927341, 0.374218, -3, 19.3932, 0)
+current = true
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Camera"]
+transform = Transform3D(-0.39391, 0.633189, -0.666264, -0.852365, 0.019617, 0.52258, 0.343962, 0.773749, 0.53198, 1.02542, -0.720765, -15.679)
+shadow_enabled = true
+directional_shadow_split_1 = 0.41
+directional_shadow_split_2 = 0.627
+directional_shadow_split_3 = 0.803
+directional_shadow_max_distance = 59.0
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Camera"]
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="Camera/CanvasLayer"]
+material = SubResource("ShaderMaterial_t2yig")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Spawn" parent="." instance=ExtResource("4_62msg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -12)
+
+[node name="NPC" parent="." instance=ExtResource("5_vt15w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.5265, 0, -13.7646)
+
+[node name="NPC2" parent="." instance=ExtResource("5_vt15w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.3856, 0, -8.70348)
+
+[node name="NPC3" parent="." instance=ExtResource("5_vt15w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.6486, 0, -18.7293)
+
+[node name="NPC4" parent="." instance=ExtResource("5_vt15w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.1752, 0, 13.4393)
+bullet_mass = 0.1
+bullet_impact = 50.0
+bullet_max_killed = 1
+firerate = 0.2
+
+[node name="NPC5" parent="." instance=ExtResource("5_vt15w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.1439, 0, 17.2188)
+bullet_mass = 0.1
+bullet_impact = 50.0
+bullet_max_killed = 1
+firerate = 0.2
+
+[node name="NPC6" parent="." instance=ExtResource("5_vt15w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.9646, 0, 20.0192)
+bullet_mass = 0.1
+bullet_impact = 50.0
+bullet_max_killed = 1
+firerate = 0.2
+
+[node name="NPC10" parent="." instance=ExtResource("5_vt15w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 52.6638, 10.5122, -79.2925)
+bullet_mass = 0.1
+bullet_impact = 50.0
+bullet_max_killed = 1
+firerate = 0.2
+
+[node name="NPC7" parent="." instance=ExtResource("5_vt15w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.5216, 0, 23.1146)
+bullet_mass = 0.1
+bullet_impact = 50.0
+bullet_max_killed = 1
+firerate = 0.2
+
+[node name="NPC8" parent="." instance=ExtResource("5_vt15w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.6608, 0, 16.6457)
+bullet_mass = 0.1
+bullet_impact = 50.0
+bullet_max_killed = 1
+firerate = 0.2
+
+[node name="NPC9" parent="." instance=ExtResource("5_vt15w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.8482, 0, 20.938)
+bullet_mass = 0.1
+bullet_impact = 50.0
+bullet_max_killed = 1
+firerate = 0.2
+
+[node name="blood_vp" type="SubViewport" parent="."]
+unique_name_in_owner = true
+transparent_bg = true
+size = Vector2i(1024, 1024)
+render_target_clear_mode = 1
+
+[node name="pen" type="Node2D" parent="blood_vp"]
+unique_name_in_owner = true
+
+[connection signal="draw" from="blood_vp/pen" to="." method="_on_draw_blood"]
