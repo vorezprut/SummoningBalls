@@ -8,6 +8,7 @@ var limb_scene = preload("res://limb.tscn")
 @export var bullet_max_killed = 5
 @export var firerate = 1.0
 @export var hp = 100.0
+@export var movement_speed: float = 3.0
 var time_to_shoot = randf_range(0, firerate)
 
 
@@ -30,12 +31,24 @@ func _ready():
 		%Boobs.visible = true
 		%Boobs2.visible = true
 	#$Timer.wait_time += randf() * 3
-
-func _process(delta):
+	
+	%Agent.velocity_computed.connect(Callable(_on_velocity_computed))
+	
+func _physics_process(delta):
+	linear_velocity.x /= 1 + 3 * delta
+	linear_velocity.z /= 1 + 3 * delta
 	time_to_shoot -= delta
 	if time_to_shoot < 0:
 		shoot()
 		time_to_shoot = firerate
+	
+	%Agent.target_position = get_tree().get_first_node_in_group("player").global_position
+	#if %Agent.is_navigation_finished():
+		#return
+
+	var next_path_position: Vector3 = %Agent.get_next_path_position()
+	var new_velocity: Vector3 = global_position.direction_to(next_path_position) * movement_speed
+	%Agent.set_velocity(new_velocity)
 
 func shoot():
 	if not visible:
@@ -68,7 +81,7 @@ func _on_body_entered(body):
 		#hp -= 10
 		hp -= body.last_speed.length_squared() / 10.0 + 3
 		if hp <= 0:
-			contact_monitor = false
+			call_deferred("set_contact_monitor", false)
 			var demon_pos = body.global_position
 			main.add_blood(global_position)
 			
@@ -93,3 +106,16 @@ func _on_body_entered(body):
 				l.apply_central_impulse(d/2.0)
 			
 			queue_free()
+			
+func _on_velocity_computed(vel):
+	if vel.length() > 0.01:
+		var query = PhysicsRayQueryParameters3D.create(global_position + Vector3.UP, global_position + Vector3.DOWN * 1.1, 1)
+		if not get_world_3d().direct_space_state.intersect_ray(query):
+			return
+		
+		apply_central_impulse(vel)
+		var orig = $Pivot.rotation.y
+		vel.y = 0
+		$Pivot.look_at(global_position + vel, Vector3.UP)
+		$Pivot.rotation.y = lerp_angle(orig, $Pivot.rotation.y, 0.3)
+	

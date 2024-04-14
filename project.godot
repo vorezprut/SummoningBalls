@@ -63,6 +63,10 @@ click={
 3d_physics/layer_4="Human"
 3d_physics/layer_5="Bullet"
 
+[physics]
+
+common/physics_ticks_per_second=30
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"

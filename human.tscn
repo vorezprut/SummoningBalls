@@ -85,7 +85,6 @@ mass = 5.0
 lock_rotation = true
 max_contacts_reported = 1
 contact_monitor = true
-linear_damp = 5.05
 script = ExtResource("1_2hq42")
 
 [node name="SFXFootsteps" type="AudioStreamPlayer" parent="."]
@@ -102,9 +101,9 @@ shape = SubResource("CapsuleShape3D_xw0eb")
 unique_name_in_owner = true
 path_desired_distance = 2.0
 target_desired_distance = 10.0
-path_height_offset = 2.0
 avoidance_enabled = true
-radius = 1.0
+radius = 2.0
+neighbor_distance = 10.0
 
 [node name="Pivot" type="Node3D" parent="."]
 

@@ -5,7 +5,6 @@
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_6jo5r"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s5e6f"]
-diffuse_mode = 3
 albedo_color = Color(1, 0.0784314, 0, 1)
 emission = Color(1, 0, 0, 1)
 emission_energy_multiplier = 0.47

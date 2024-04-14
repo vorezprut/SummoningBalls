@@ -20,5 +20,4 @@ func _physics_process(delta):
 		var end = origin + camera3d.project_ray_normal(pos) * 1000
 		var space_state = get_world_3d().direct_space_state
 		var query = PhysicsRayQueryParameters3D.create(origin, end, 1)
-		query.collide_with_areas = true
 		demon_target = space_state.intersect_ray(query)["position"]
