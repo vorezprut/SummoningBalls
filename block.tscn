@@ -1,11 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://dxcvdknkt2noy"]
+[gd_scene load_steps=5 format=3 uid="uid://dxcvdknkt2noy"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_olwi7"]
-albedo_color = Color(0.0823529, 0.0431373, 0, 1)
+[ext_resource type="Shader" uid="uid://cye00hkrlngdm" path="res://block.tres" id="1_bd7p3"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qu5h5"]
+render_priority = 0
+shader = ExtResource("1_bd7p3")
 
 [sub_resource type="BoxMesh" id="BoxMesh_f6p37"]
 lightmap_size_hint = Vector2i(14, 21)
-material = SubResource("StandardMaterial3D_olwi7")
+material = SubResource("ShaderMaterial_qu5h5")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_gvvvn"]
 
