@@ -48,4 +48,5 @@ func _on_lava_body_entered(body):
 	if body.is_in_group("demon") or body.is_in_group("human"):
 		body.call_deferred("queue_free")
 	elif body.is_in_group("player"):
-		body.call_deferred("queue_free")
+		body.hp -= 100
+		

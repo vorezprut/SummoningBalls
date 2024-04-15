@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cne1e3tesf6ls"]
+[gd_scene load_steps=14 format=3 uid="uid://cne1e3tesf6ls"]
 
 [ext_resource type="Script" path="res://demon.gd" id="1_my2mv"]
 
@@ -6,9 +6,14 @@
 bounce = 0.3
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6r81n"]
+transparency = 1
 
 [sub_resource type="SphereMesh" id="SphereMesh_brols"]
 material = SubResource("StandardMaterial3D_6r81n")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m0121"]
+resource_local_to_scene = true
+transparency = 1
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kn2t1"]
 albedo_color = Color(1, 0.0784314, 0, 1)
@@ -18,39 +23,116 @@ emission_energy_multiplier = 0.47
 [sub_resource type="PrismMesh" id="PrismMesh_vemv6"]
 material = SubResource("StandardMaterial3D_kn2t1")
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tl8on"]
+resource_local_to_scene = true
+transparency = 1
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b13ce"]
+resource_local_to_scene = true
+transparency = 1
+albedo_color = Color(1, 0, 0, 1)
+
 [sub_resource type="SphereShape3D" id="SphereShape3D_jrmd1"]
 
-[sub_resource type="Curve" id="Curve_f1e0m"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.210145, 1), 0.0, 0.0, 0, 0, Vector2(0.782609, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 4
+[sub_resource type="Animation" id="Animation_41qcw"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ball:surface_material_override/0:albedo_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ball/MeshInstance3D2:surface_material_override/0:albedo_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 0, 0, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ball/MeshInstance3D:surface_material_override/0:albedo_color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 0, 0, 1)]
+}
 
-[sub_resource type="CurveTexture" id="CurveTexture_5ibxc"]
-curve = SubResource("Curve_f1e0m")
+[sub_resource type="Animation" id="Animation_bksbi"]
+resource_name = "new_animation"
+length = 3.0
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1.8),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ball:surface_material_override/0:albedo_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1.7),
+"transitions": PackedFloat32Array(1, 0.466516, 8.57418),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.392157, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ball/MeshInstance3D2:surface_material_override/0:albedo_color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5, 1.7),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 0, 0, 1), Color(0.505882, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ball/MeshInstance3D:surface_material_override/0:albedo_color")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.5, 1.7),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 0, 0, 1), Color(0.501961, 0, 0, 1), Color(0, 0, 0, 0)]
+}
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_js16k"]
-lifetime_randomness = 0.5
-emission_shape = 2
-emission_sphere_radius = 0.5
-direction = Vector3(0, 1, 0)
-initial_velocity_min = 1.0
-initial_velocity_max = 1.0
-gravity = Vector3(0, 0, 0)
-scale_curve = SubResource("CurveTexture_5ibxc")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4t20n"]
-transparency = 1
-blend_mode = 1
-shading_mode = 0
-albedo_color = Color(1, 0.32549, 0, 1)
-billboard_mode = 3
-billboard_keep_scale = true
-particles_anim_h_frames = 1
-particles_anim_v_frames = 1
-particles_anim_loop = false
-
-[sub_resource type="QuadMesh" id="QuadMesh_4nqsi"]
-material = SubResource("StandardMaterial3D_4t20n")
-size = Vector2(0.1, 0.1)
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qfm3m"]
+_data = {
+"RESET": SubResource("Animation_41qcw"),
+"die": SubResource("Animation_bksbi")
+}
 
 [node name="Demon" type="RigidBody3D" groups=["demon"]]
 collision_layer = 2
@@ -62,21 +144,27 @@ script = ExtResource("1_my2mv")
 [node name="ball" type="MeshInstance3D" parent="."]
 mesh = SubResource("SphereMesh_brols")
 skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_m0121")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="ball"]
 transform = Transform3D(0.197176, 0.110442, 0, -0.110442, 0.197176, 0, 0, 0, 0.038, 0.299946, 0.499833, 0.0701532)
 mesh = SubResource("PrismMesh_vemv6")
 skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_tl8on")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="ball"]
 transform = Transform3D(-0.197176, -0.110442, 5.73784e-09, -0.110442, 0.197176, 6.67368e-17, -2.97728e-08, -1.66763e-08, -0.038, -0.303012, 0.499833, 0.0701532)
 mesh = SubResource("PrismMesh_vemv6")
 skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_b13ce")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_jrmd1")
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
 visible = false
-process_material = SubResource("ParticleProcessMaterial_js16k")
-draw_pass_1 = SubResource("QuadMesh_4nqsi")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_qfm3m")
+}
