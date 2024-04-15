@@ -11,7 +11,9 @@ var dmg_num_scene = preload("res://damage_number.tscn")
 @export var hp = 100.0
 @export var movement_speed: float = 3.0
 @export var following = true
+@export var is_bigboi = false
 var time_to_shoot = randf_range(0, firerate)
+var bigboi_scale = Vector3(4, 4, 4)
 
 
 func _ready():
@@ -33,6 +35,9 @@ func _ready():
 		%Boobs.visible = true
 		%Boobs2.visible = true
 	#$Timer.wait_time += randf() * 3
+	if is_bigboi:
+		$Pivot.scale = bigboi_scale
+		$CollisionShape3D.scale = bigboi_scale
 	
 	if following:
 		%Agent.velocity_computed.connect(Callable(_on_velocity_computed))
@@ -71,6 +76,9 @@ func shoot():
 		return
 	var bullet = bullet_scene.instantiate()
 	bullet.mass = bullet_mass
+	if is_bigboi:
+		bullet.bullet_scale = 8.0
+		bullet.max_killed = 100
 	bullet.max_killed = bullet_max_killed
 	main.add_child(bullet)
 	bullet.global_position = shoot_pos

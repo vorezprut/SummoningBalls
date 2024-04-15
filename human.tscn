@@ -4,6 +4,8 @@
 [ext_resource type="AudioStream" uid="uid://dhaljlw5ylqpg" path="res://Audio/Footsteps/GWJ52 SFX - Footstep 1.wav" id="2_sf81s"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_xw0eb"]
+radius = 0.62
+height = 2.3
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2tcbg"]
 albedo_color = Color(0, 0.266667, 0.305882, 1)
@@ -66,7 +68,7 @@ pitch_scale = 0.66
 mix_target = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.01529, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.7, 0, 0, 0)
 shape = SubResource("CapsuleShape3D_xw0eb")
 
 [node name="Agent" type="NavigationAgent3D" parent="."]
@@ -81,7 +83,7 @@ neighbor_distance = 10.0
 
 [node name="Shirt" type="MeshInstance3D" parent="Pivot"]
 unique_name_in_owner = true
-transform = Transform3D(1.37663, 0, 0, 0, 0.558, 0, 0, 0, 0.8, 0, 1.38098, 0)
+transform = Transform3D(1.37663, 0, 0, 0, 0.558, 0, 0, 0, 0.8, 0, 0.25604, 0)
 mesh = SubResource("CapsuleMesh_7amvq")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_skwdu")
@@ -102,15 +104,16 @@ skeleton = NodePath("../..")
 
 [node name="Head" type="MeshInstance3D" parent="Pivot"]
 unique_name_in_owner = true
-transform = Transform3D(-2.71011e-08, -0.62, -2.71011e-08, 0, -2.71011e-08, 0.62, -0.62, 2.71011e-08, 1.18463e-15, 0, 2.15105, 0)
+transform = Transform3D(-2.71011e-08, -0.62, -2.71011e-08, 0, -2.71011e-08, 0.62, -0.62, 2.71011e-08, 1.18463e-15, 0, 1.02611, 0)
 mesh = SubResource("SphereMesh_1pxja")
 
 [node name="Hat" type="MeshInstance3D" parent="Pivot"]
 unique_name_in_owner = true
-transform = Transform3D(-2.14623e-08, -0.491, -2.14623e-08, 0, -2.14623e-08, 0.491, -0.491, 2.14623e-08, 9.38147e-16, 0, 2.30099, 0)
+transform = Transform3D(-2.14623e-08, -0.491, -2.14623e-08, 0, -2.14623e-08, 0.491, -0.491, 2.14623e-08, 9.38147e-16, 0, 1.17605, 0)
 mesh = SubResource("SphereMesh_ta0i0")
 
 [node name="Pants" type="Node3D" parent="Pivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.12494, 0)
 
 [node name="Pants1" type="MeshInstance3D" parent="Pivot/Pants"]
 unique_name_in_owner = true

@@ -178,23 +178,34 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -73.1152, 0, -21.6976)
 
 [node name="NPC" parent="." instance=ExtResource("5_vt15w")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -95.4985, 0, -13.7646)
+bullet_impact = 30.0
 
 [node name="NPC3" parent="." instance=ExtResource("5_vt15w")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -87.2426, 0, -32.6981)
+bullet_impact = 30.0
 
 [node name="NPC9" parent="." instance=ExtResource("5_vt15w")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -90.6449, 0, 20.938)
 bullet_mass = 0.1
-bullet_impact = 50.0
+bullet_impact = 20.0
 bullet_max_killed = 1
 firerate = 0.2
 
 [node name="NPC10" parent="." instance=ExtResource("5_vt15w")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -64.6001, 0, 20.938)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -64.6217, 0.197372, 20.9215)
 bullet_mass = 0.1
-bullet_impact = 50.0
+bullet_impact = 20.0
 bullet_max_killed = 1
 firerate = 0.2
+
+[node name="NPC6" parent="." instance=ExtResource("5_vt15w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 293.151, 11.9782, 174.008)
+bullet_mass = 100.0
+bullet_impact = 80.0
+bullet_max_killed = 10
+hp = 10000.0
+following = false
+is_bigboi = true
 
 [node name="blood_vp" type="SubViewport" parent="."]
 unique_name_in_owner = true
