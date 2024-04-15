@@ -1,6 +1,7 @@
-[gd_scene load_steps=18 format=3 uid="uid://duujwcst2ca2q"]
+[gd_scene load_steps=19 format=3 uid="uid://duujwcst2ca2q"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_nrxkj"]
+[ext_resource type="PackedScene" uid="uid://bdi4f7yee8svl" path="res://arrow.tscn" id="2_xeef2"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_6jo5r"]
 
@@ -134,3 +135,6 @@ amount = 100
 visibility_aabb = AABB(-4, -2.10226, -4, 8, 4.20451, 8)
 process_material = SubResource("ParticleProcessMaterial_6pcu8")
 draw_pass_1 = SubResource("QuadMesh_k3h6f")
+
+[node name="arrow" parent="." instance=ExtResource("2_xeef2")]
+unique_name_in_owner = true

@@ -7,7 +7,7 @@ var bloodstains = []
 
 func _ready():
 	pass
-	for i in range(700):
+	for i in range(0):
 		var d = demon_scene.instantiate()
 		d.position = %Player.global_position + Vector3(randf_range(-10, 10), 1, randf_range(-10, 10))
 		add_child(d)
@@ -27,6 +27,7 @@ func _process(delta):
 	#add_child(d)
 
 func add_blood(pos):
+	pos -= %bloodplane.global_position
 	var vp_size = %blood_vp.size
 	var bp_size = %bloodplane.mesh.size
 	bloodstains.append(Vector2(pos.x * (vp_size.x / bp_size.x) + vp_size.x/2.0, pos.z * (vp_size.y / bp_size.y) + vp_size.y/2.0))
@@ -48,11 +49,3 @@ func _on_lava_body_entered(body):
 		body.call_deferred("queue_free")
 	elif body.is_in_group("player"):
 		body.call_deferred("queue_free")
-		
-
-func _on_spawn_timer_timeout():
-	var s = get_tree().get_nodes_in_group("human_spawner").pick_random()
-	for i in range(3):
-		var h = human_scene.instantiate()
-		add_child(h)
-		h.global_position = s.global_position + Vector3(randf_range(-10, 10), 1, randf_range(-10, 10))

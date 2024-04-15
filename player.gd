@@ -13,6 +13,10 @@ func _physics_process(delta):
 	%Anchor.global_position = global_position
 	%Anchor.global_position.y += 3
 	
+	var s = get_tree().get_first_node_in_group("spawn")
+	%arrow.global_position = global_position + global_position.direction_to(s.global_position) * 15
+	%arrow.look_at(s.global_position)
+	
 	demon_target = global_position
 	if Input.is_action_pressed("click"):
 		%Cursor.emitting = true

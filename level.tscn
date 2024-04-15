@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://chhwbwkfcixig"]
+[gd_scene load_steps=8 format=3 uid="uid://chhwbwkfcixig"]
 
 [ext_resource type="PackedScene" uid="uid://dxcvdknkt2noy" path="res://block.tscn" id="1_wmnq1"]
 [ext_resource type="PackedScene" uid="uid://ccep30chjdac6" path="res://spawn.tscn" id="2_gh8c7"]
+[ext_resource type="FontFile" uid="uid://bqgwof1eixopk" path="res://fff-forward.regular.ttf" id="4_2yw17"]
 [ext_resource type="PackedScene" uid="uid://ckxehb6c5xtaw" path="res://human.tscn" id="4_my6du"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_brqvo"]
@@ -26,6 +27,18 @@ transform = Transform3D(10, 0, 0, 0, 64.4985, 0, 0, 0, 495.912, 249.148, 30.9289
 
 [node name="Ground2" parent="." instance=ExtResource("1_wmnq1")]
 transform = Transform3D(158.684, 0, 0, 0, 10, 0, 0, 0, 500, 201.984, -5, 0)
+physics_material_override = SubResource("PhysicsMaterial_brqvo")
+
+[node name="Ground4" parent="." instance=ExtResource("1_wmnq1")]
+transform = Transform3D(158.684, 0, 0, 0, 10, 0, 0, 0, 500, 201.984, -5, 0)
+physics_material_override = SubResource("PhysicsMaterial_brqvo")
+
+[node name="Ground5" parent="." instance=ExtResource("1_wmnq1")]
+transform = Transform3D(34.3204, 0, 0, 0, 10, 0, 0, 0, 500, 408.798, -5, 98.3897)
+physics_material_override = SubResource("PhysicsMaterial_brqvo")
+
+[node name="Ground6" parent="." instance=ExtResource("1_wmnq1")]
+transform = Transform3D(122.387, 0, 0, 0, 10, 0, 0, 0, 108.511, 334.154, -5, -96.9222)
 physics_material_override = SubResource("PhysicsMaterial_brqvo")
 
 [node name="Wall" parent="." instance=ExtResource("1_wmnq1")]
@@ -96,10 +109,19 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 70.6597, 0, -168.136)
 [node name="Wall3" parent="." instance=ExtResource("1_wmnq1")]
 transform = Transform3D(-4.37114e-07, 0, 178.725, 0, 119.598, 0, -10, 0, -7.81231e-06, 212.862, 30.9289, 241.844)
 
+[node name="Wall4" parent="." instance=ExtResource("1_wmnq1")]
+transform = Transform3D(-4.37114e-07, 0, 178.725, 0, 119.598, 0, -10, 0, -7.81231e-06, 344.225, 30.9289, 241.844)
+
 [node name="Rampup" type="MeshInstance3D" parent="."]
 
 [node name="Ramp" parent="Rampup" instance=ExtResource("1_wmnq1")]
 transform = Transform3D(-3.00715e-07, 0, 67.8856, 5.56787, 30.0825, 2.4016e-06, -4.04069, 41.4522, -1.74288e-06, 37.8786, 10.3168, 269.68)
+
+[node name="Ramp2" parent="Rampup" instance=ExtResource("1_wmnq1")]
+transform = Transform3D(-2.29027e-06, 3.38661e-06, 67.886, 34.1326, 136.255, 2.40161e-06, -24.7706, 187.753, -2.96739e-06, 281.51, -21.7276, 53.9395)
+
+[node name="Ramp3" parent="Rampup" instance=ExtResource("1_wmnq1")]
+transform = Transform3D(67.26, 0, 0, 0, 135.875, 0, 0, 0, 192.439, 281.469, -4.56951, 231.715)
 
 [node name="Ground3" parent="Rampup" instance=ExtResource("1_wmnq1")]
 transform = Transform3D(68.3286, 0, 0, 0, 7.85466, 0, 0, 0, 204.923, 38.0757, 24.1505, 390.749)
@@ -291,6 +313,15 @@ transform = Transform3D(-4.37114e-07, 0, 178.725, 0, 119.598, 0, -10, 0, -7.8123
 [node name="Wall9" parent="." instance=ExtResource("1_wmnq1")]
 transform = Transform3D(10, 0, 0, 0, 119.598, 0, 0, 0, 196.598, 128.862, 30.9289, 338.844)
 
+[node name="Wall11" parent="." instance=ExtResource("1_wmnq1")]
+transform = Transform3D(9.94461, 0, 0, 0, 8.8804, 0, 0, 0, 159.191, 390.241, 4.4402, 164.58)
+
+[node name="Wall13" parent="." instance=ExtResource("1_wmnq1")]
+transform = Transform3D(9.94461, 0, 0, 0, 8.8804, 0, 0, 0, 159.191, 390.241, 4.4402, 164.58)
+
+[node name="Wall12" parent="." instance=ExtResource("1_wmnq1")]
+transform = Transform3D(9.94461, 0, 0, 0, 8.8804, 0, 0, 0, 482.969, 429.399, 4.4402, 4.11213)
+
 [node name="Spawn" parent="." instance=ExtResource("2_gh8c7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 216.266, 0, -190.702)
 
@@ -311,3 +342,72 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 206.357, 0, 25.9619)
 
 [node name="HumanSpawn2" type="Node3D" parent="." groups=["human_spawner"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 42.7421, 0, -8.5448)
+
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 409.794, 0.296612, 209.617)
+text = "Welcome Ba'all
+Use [WASD] to move"
+font = ExtResource("4_2yw17")
+font_size = 400
+outline_size = 127
+
+[node name="Label3D2" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 409.794, 0.296612, 189.063)
+text = "Use Pentagrams
+to summon minions"
+font = ExtResource("4_2yw17")
+font_size = 400
+outline_size = 127
+
+[node name="Label3D3" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 409.794, 0.296612, 146.326)
+text = "Hold [Left Click] to 
+command your army"
+font = ExtResource("4_2yw17")
+font_size = 400
+outline_size = 127
+
+[node name="Label3D4" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 409.794, 0.296612, 98.6671)
+text = "Use all Pentagrams
+to consume the world!"
+font = ExtResource("4_2yw17")
+font_size = 400
+outline_size = 127
+
+[node name="Spawn6" parent="." instance=ExtResource("2_gh8c7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 409.975, 0, 169.739)
+num = 20
+
+[node name="Spawn7" parent="." instance=ExtResource("2_gh8c7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 409.975, 0, -1.6398)
+
+[node name="Spawn8" parent="." instance=ExtResource("2_gh8c7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 267.905, 0, -186.166)
+
+[node name="NPC2" parent="." instance=ExtResource("4_my6du")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 408.793, 2.38419e-06, 123.613)
+bullet_mass = 1.0
+bullet_max_killed = 1
+hp = 200.0
+following = false
+
+[node name="NPC3" parent="." instance=ExtResource("4_my6du")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 408.793, 2.38419e-06, 25.6366)
+bullet_mass = 1.0
+bullet_impact = 300.0
+bullet_max_killed = 1
+following = false
+
+[node name="NPC4" parent="." instance=ExtResource("4_my6du")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 402.419, 2.38419e-06, 25.6366)
+bullet_mass = 1.0
+bullet_impact = 300.0
+bullet_max_killed = 1
+following = false
+
+[node name="NPC5" parent="." instance=ExtResource("4_my6du")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 416.029, 2.38419e-06, 25.6366)
+bullet_mass = 1.0
+bullet_max_killed = 1
+following = false

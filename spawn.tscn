@@ -1,10 +1,16 @@
-[gd_scene load_steps=16 format=3 uid="uid://ccep30chjdac6"]
+[gd_scene load_steps=18 format=3 uid="uid://ccep30chjdac6"]
 
 [ext_resource type="Script" path="res://spawn.gd" id="1_1d5l5"]
 [ext_resource type="Texture2D" uid="uid://b3gghspasuukm" path="res://door.png" id="2_jpaha"]
+[ext_resource type="Shader" uid="uid://cye00hkrlngdm" path="res://block.tres" id="2_snd4m"]
 [ext_resource type="PackedScene" uid="uid://dxcvdknkt2noy" path="res://block.tscn" id="3_717wy"]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bdvng"]
+render_priority = 0
+shader = ExtResource("2_snd4m")
+
 [sub_resource type="TorusMesh" id="TorusMesh_5uafj"]
+material = SubResource("ShaderMaterial_bdvng")
 inner_radius = 0.864
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fx3vb"]
@@ -80,7 +86,7 @@ tangential_accel_min = 5.0
 tangential_accel_max = 5.0
 scale_curve = SubResource("CurveTexture_gy737")
 
-[node name="Spawn" type="Node3D"]
+[node name="Spawn" type="Node3D" groups=["spawn"]]
 script = ExtResource("1_1d5l5")
 
 [node name="Tube" type="MeshInstance3D" parent="."]

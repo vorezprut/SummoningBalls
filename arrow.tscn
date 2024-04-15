@@ -1,0 +1,36 @@
+[gd_scene load_steps=7 format=3 uid="uid://bdi4f7yee8svl"]
+
+[ext_resource type="Texture2D" uid="uid://b3gghspasuukm" path="res://door.png" id="1_uniem"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2kblb"]
+render_priority = 5
+albedo_color = Color(0.12549, 0.0901961, 0.25098, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ud8cr"]
+material = SubResource("StandardMaterial3D_2kblb")
+
+[sub_resource type="PrismMesh" id="PrismMesh_eq4s5"]
+material = SubResource("StandardMaterial3D_2kblb")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1g8xq"]
+transparency = 2
+alpha_scissor_threshold = 1.0
+alpha_antialiasing_mode = 0
+albedo_texture = ExtResource("1_uniem")
+
+[sub_resource type="QuadMesh" id="QuadMesh_vsynk"]
+material = SubResource("StandardMaterial3D_1g8xq")
+
+[node name="arrow" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(-9.13192e-08, 0, 1.44548, 0, 0.479489, 0, -2.08914, 0, -6.31839e-08, 0.0157103, -0.015805, 0.322989)
+mesh = SubResource("BoxMesh_ud8cr")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(-2.71587, -1.94573e-07, -1.82671e-09, 1.03466e-08, 1.49526e-07, -0.479489, 2.36977e-07, -2.2299, -3.21522e-08, 0.0157103, -0.015805, -1.46684)
+mesh = SubResource("PrismMesh_eq4s5")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.50606, 0, 0, 0, -6.58321e-08, 1.50606, 0, -1.50606, -6.58321e-08, 0.0108317, 0.242829, -0.802569)
+mesh = SubResource("QuadMesh_vsynk")
