@@ -14,8 +14,7 @@ func _on_body_entered(body):
 		return
 	if body.is_in_group("demon"):
 		max_killed -= 1
-		await get_tree().create_timer(0.2).timeout
-		if is_instance_valid(body):
-			body.queue_free()
+		if not body.dead:
+			body.die()
 	elif body.is_in_group("player"):
 		body.hp -= dmg

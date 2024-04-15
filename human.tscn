@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://ckxehb6c5xtaw"]
+[gd_scene load_steps=19 format=3 uid="uid://ckxehb6c5xtaw"]
 
 [ext_resource type="Script" path="res://human.gd" id="1_2hq42"]
 [ext_resource type="AudioStream" uid="uid://dhaljlw5ylqpg" path="res://Audio/Footsteps/GWJ52 SFX - Footstep 1.wav" id="2_sf81s"]
@@ -49,34 +49,6 @@ albedo_color = Color(0.341176, 0.196078, 0, 1)
 material = SubResource("StandardMaterial3D_4yl5n")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5nx68"]
-
-[sub_resource type="Curve" id="Curve_ll1eg"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.210145, 1), 0.0, 0.0, 0, 0, Vector2(0.782609, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 4
-
-[sub_resource type="CurveTexture" id="CurveTexture_3rph0"]
-curve = SubResource("Curve_ll1eg")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_xvbwt"]
-emission_shape = 2
-emission_sphere_radius = 0.5
-direction = Vector3(0, 1, 0)
-initial_velocity_min = 3.0
-initial_velocity_max = 3.0
-scale_curve = SubResource("CurveTexture_3rph0")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_akury"]
-shading_mode = 0
-albedo_color = Color(1, 0, 0, 1)
-billboard_mode = 3
-billboard_keep_scale = true
-particles_anim_h_frames = 1
-particles_anim_v_frames = 1
-particles_anim_loop = false
-
-[sub_resource type="QuadMesh" id="QuadMesh_hrupu"]
-material = SubResource("StandardMaterial3D_akury")
-size = Vector2(0.2, 0.2)
 
 [node name="NPC" type="RigidBody3D" groups=["human", "npc"]]
 collision_layer = 8
@@ -165,8 +137,6 @@ emitting = false
 amount = 40
 one_shot = true
 explosiveness = 0.19
-process_material = SubResource("ParticleProcessMaterial_xvbwt")
-draw_pass_1 = SubResource("QuadMesh_hrupu")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="velocity_computed" from="Agent" to="." method="velocity_computed"]
