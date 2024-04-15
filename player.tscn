@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://duujwcst2ca2q"]
+[gd_scene load_steps=18 format=3 uid="uid://duujwcst2ca2q"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_nrxkj"]
 
@@ -25,10 +25,76 @@ material = SubResource("StandardMaterial3D_6t1an")
 [sub_resource type="SphereShape3D" id="SphereShape3D_ov8q3"]
 radius = 2.0
 
+[sub_resource type="Curve" id="Curve_dc6po"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.210145, 1), 0.0, 0.0, 0, 0, Vector2(0.782609, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_mgdlm"]
+curve = SubResource("Curve_dc6po")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_x0igs"]
+emission_shape = 2
+emission_sphere_radius = 2.0
+direction = Vector3(0, 1, 0)
+initial_velocity_min = 1.0
+initial_velocity_max = 1.0
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_mgdlm")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xcn30"]
+transparency = 1
+blend_mode = 1
+shading_mode = 0
+albedo_color = Color(1, 0.32549, 0, 1)
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_1dp6y"]
+material = SubResource("StandardMaterial3D_xcn30")
+size = Vector2(0.2, 0.2)
+
+[sub_resource type="Curve" id="Curve_wet25"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.210145, 1), 0.0, 0.0, 0, 0, Vector2(0.782609, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_cnacb"]
+curve = SubResource("Curve_wet25")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_6pcu8"]
+emission_shape = 6
+emission_ring_axis = Vector3(0, 1, 0)
+emission_ring_height = 0.1
+emission_ring_radius = 3.0
+emission_ring_inner_radius = 3.0
+direction = Vector3(0, 2, 0)
+spread = 0.0
+gravity = Vector3(0, -10, 0)
+radial_accel_min = -10.0
+radial_accel_max = -10.0
+tangential_accel_min = -3.0
+tangential_accel_max = -3.0
+scale_curve = SubResource("CurveTexture_cnacb")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y8ugf"]
+shading_mode = 0
+albedo_color = Color(0.447059, 0, 0.619608, 1)
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_k3h6f"]
+material = SubResource("StandardMaterial3D_y8ugf")
+size = Vector2(0.3, 0.3)
+
 [node name="Player" type="RigidBody3D" groups=["player"]]
 collision_layer = 4
-collision_mask = 15
-mass = 3.0
+collision_mask = 31
+mass = 20.0
 physics_material_override = SubResource("PhysicsMaterial_6jo5r")
 angular_damp = 1.0
 script = ExtResource("1_nrxkj")
@@ -54,3 +120,17 @@ unique_name_in_owner = true
 light_color = Color(1, 0.160784, 0, 1)
 light_energy = 3.0
 omni_range = 12.936
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+amount = 40
+lifetime = 2.0
+process_material = SubResource("ParticleProcessMaterial_x0igs")
+draw_pass_1 = SubResource("QuadMesh_1dp6y")
+
+[node name="Cursor" type="GPUParticles3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.96885, 2.46395, 0.0860572)
+amount = 100
+visibility_aabb = AABB(-4, -2.10226, -4, 8, 4.20451, 8)
+process_material = SubResource("ParticleProcessMaterial_6pcu8")
+draw_pass_1 = SubResource("QuadMesh_k3h6f")

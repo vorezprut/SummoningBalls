@@ -7,6 +7,7 @@ var demon_scene = preload("res://demon.tscn")
 func _on_area_3d_body_entered(body):
 	if not is_instance_valid(%Area3D):
 		return
+	body.hp = 100
 	%Area3D.queue_free()
 	%PentFire.emitting = false
 	var tween = get_tree().create_tween().set_trans(Tween.TRANS_CUBIC)
@@ -21,7 +22,7 @@ func _on_area_3d_body_entered(body):
 		get_node("/root/main").add_child(d)
 		d.global_position = global_position
 		d.apply_central_impulse(Vector3.UP * 17)
-		await get_tree().create_timer(0.1 + randf()/10.0).timeout
+		await get_tree().create_timer(0.05 + randf()/20.0).timeout
 
 	%SpawnFire.emitting = false
 	queue_free()

@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://cdlxk7j8qldh8"]
+
+[ext_resource type="FontFile" uid="uid://bqgwof1eixopk" path="res://fff-forward.regular.ttf" id="1_0lln6"]
+[ext_resource type="Script" path="res://damage_number.gd" id="1_a8udp"]
+
+[node name="DamageNumber" type="Label3D"]
+pixel_size = 0.05
+billboard = 1
+no_depth_test = true
+render_priority = 3
+outline_render_priority = 2
+modulate = Color(1, 0.184314, 0.113725, 1)
+text = "10"
+font = ExtResource("1_0lln6")
+script = ExtResource("1_a8udp")

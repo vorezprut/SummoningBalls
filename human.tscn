@@ -78,7 +78,7 @@ particles_anim_loop = false
 material = SubResource("StandardMaterial3D_akury")
 size = Vector2(0.2, 0.2)
 
-[node name="NPC" type="RigidBody3D" groups=["npc"]]
+[node name="NPC" type="RigidBody3D" groups=["human", "npc"]]
 collision_layer = 8
 collision_mask = 15
 mass = 5.0

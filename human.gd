@@ -2,13 +2,15 @@ extends RigidBody3D
 
 var bullet_scene = preload("res://bullet.tscn")
 var limb_scene = preload("res://limb.tscn")
+var dmg_num_scene = preload("res://damage_number.tscn")
 @onready var main = get_node("/root/main")
-@export var bullet_mass = 50.0
+@export var bullet_mass = 10.0
 @export var bullet_impact = 100.0
 @export var bullet_max_killed = 5
 @export var firerate = 1.0
 @export var hp = 100.0
 @export var movement_speed: float = 3.0
+@export var following = true
 var time_to_shoot = randf_range(0, firerate)
 
 
@@ -32,7 +34,8 @@ func _ready():
 		%Boobs2.visible = true
 	#$Timer.wait_time += randf() * 3
 	
-	%Agent.velocity_computed.connect(Callable(_on_velocity_computed))
+	if following:
+		%Agent.velocity_computed.connect(Callable(_on_velocity_computed))
 	
 func _physics_process(delta):
 	linear_velocity.x /= 1 + 3 * delta
@@ -57,7 +60,7 @@ func shoot():
 	shoot_pos.y += 1
 	var l = INF
 	var closest = null
-	for d in get_tree().get_nodes_in_group("demon"):
+	for d in get_tree().get_nodes_in_group("demon") + get_tree().get_nodes_in_group("player"):
 		var dist = d.global_position.distance_squared_to(shoot_pos)
 		if dist < l:
 			l = dist
@@ -79,7 +82,14 @@ func _on_body_entered(body):
 		%BloodParticles.emitting = true
 		
 		#hp -= 10
-		hp -= body.last_speed.length_squared() / 10.0 + 3
+		var dmg = body.last_speed.length_squared() / 10.0 + 3
+		hp -= dmg
+		var dn = dmg_num_scene.instantiate()
+		dn.damage = dmg
+		main.add_child(dn)
+		dn.global_position = global_position
+		dn.global_position.y += 2
+		
 		if hp <= 0:
 			call_deferred("set_contact_monitor", false)
 			var demon_pos = body.global_position
@@ -108,7 +118,7 @@ func _on_body_entered(body):
 			queue_free()
 			
 func _on_velocity_computed(vel):
-	if vel.length() > 0.01:
+	if vel.length() > 0.01 and global_position.distance_to(%Agent.target_position) > 10:
 		var query = PhysicsRayQueryParameters3D.create(global_position + Vector3.UP, global_position + Vector3.DOWN * 1.1, 1)
 		if not get_world_3d().direct_space_state.intersect_ray(query):
 			return

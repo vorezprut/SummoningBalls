@@ -12,4 +12,6 @@ func _physics_process(delta):
 	cur_speed = linear_velocity
 	#if randf() < 0.05:
 		#apply_central_impulse(global_position.direction_to(player.global_position) * delta * 10)
-	apply_central_force(global_position.direction_to(player.demon_target) * 11)
+	var d = global_position.direction_to(player.demon_target)
+	d.y /= 5
+	apply_central_force(d * 20)
